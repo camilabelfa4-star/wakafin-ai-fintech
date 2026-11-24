@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wakafin – Wakaf Finance for Sustainable Farming</title>
+<style>
+:root{--g:#3f6e53;--gd:#14502f;--y:#f5b535;--sand:#e0cc9f;--bg:#fff;--card:#f2f2f4;--tx:#1b1b1b;--mut:#5d6b62;--ok:#1a9a52}
+@media(prefers-color-scheme:dark){:root{--bg:#10181300}}
+*{box-sizing:border-box;margin:0;font-family:Georgia,"Times New Roman",serif}
+html,body{height:100%}
+body{background:#e9efe9;display:flex;justify-content:center;align-items:center;color:var(--tx)}
+#app{width:100%;max-width:420px;height:100%;max-height:860px;background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column}
+@media(min-width:500px){#app{border-radius:36px;border:10px solid #111;height:92vh}}
+#top{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;flex:none}
+#top .lg{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--gd);font-size:20px;letter-spacing:.5px}
+.star{width:34px;height:34px;background:var(--gd);clip-path:polygon(50% 0,63% 20%,85% 15%,80% 37%,100% 50%,80% 63%,85% 85%,63% 80%,50% 100%,37% 80%,15% 85%,20% 63%,0 50%,20% 37%,15% 15%,37% 20%);display:grid;place-items:center;font-size:16px}
+.ic{display:flex;gap:14px;font-size:22px}
+.ic span{cursor:pointer}
+#scr{flex:1;overflow-y:auto;padding:4px 18px 90px}
+h1{font-size:22px;margin:6px 0 12px;color:var(--gd)}
+h2{font-size:17px;margin:14px 0 8px}
+.card{background:var(--card);border-radius:16px;padding:14px;box-shadow:0 2px 6px #0002;margin-bottom:12px}
+.green{background:var(--g);color:#fff;border-radius:16px;padding:16px;margin-bottom:12px}
+.green small{opacity:.9}
+.gold{background:var(--y);color:#222;border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.btn{display:block;width:100%;border:0;border-radius:30px;padding:14px;font-size:17px;background:var(--g);color:#fff;cursor:pointer;margin:8px 0;text-align:center}
+.btn.y{background:var(--y);color:#fff;font-size:19px}
+.btn:active,.tile:active{transform:scale(.98)}
+.hero{border-radius:18px;padding:18px 16px 70px;color:#fff;background:linear-gradient(135deg,#2c6a3f,#7a9b4a 55%,#e3c06a);position:relative}
+.hero p{font-size:19px}.hero small{display:block;margin-top:8px;opacity:.95}
+.stat{display:flex;background:#fff;border-radius:16px;box-shadow:0 3px 10px #0003;margin:-48px 12px 14px;position:relative;padding:12px}
+.stat>div{flex:1;padding:0 8px}.stat>div+div{border-left:2px solid #222}
+.stat b{font-size:20px;display:block}.stat em{font-style:normal;color:var(--ok);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.tile{background:var(--card);border-radius:14px;box-shadow:0 2px 6px #0002;padding:12px 4px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.tile i{font-style:normal;font-size:30px}
+.band{display:flex;align-items:center;gap:12px;cursor:pointer;font-size:19px;font-weight:700;letter-spacing:.5px}
+.band i{font-style:normal;font-size:40px}
+.tabs{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto}
+.tab{padding:9px 16px;border-radius:20px;font-size:14px;cursor:pointer;white-space:nowrap;background:#eee}
+.tab.on{background:var(--y);font-weight:700}
+.row{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.th{width:84px;height:84px;border-radius:16px;border:4px solid var(--y);display:grid;place-items:center;font-size:36px;flex:none;background:#f7f7f2}
+.row b{display:block;margin-bottom:4px}.row span{color:var(--ok);font-size:13px}
+input{width:100%;padding:15px 18px;border:0;border-radius:30px;background:#f3f3f8;font-size:16px;margin-bottom:12px;font-weight:700}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:6px 0;font-size:14px}.kv b{text-align:right}
+.bar{height:12px;background:#ddd;border-radius:8px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;background:var(--y)}
+.steps{display:flex;gap:6px;align-items:center;overflow-x:auto;padding-bottom:6px}
+.step{text-align:center;font-size:12px;min-width:74px}.step i{font-style:normal;font-size:30px;display:block;background:var(--card);border-radius:12px;padding:10px;margin-bottom:4px}
+.ok{display:flex;gap:12px;align-items:center}.ok i{font-style:normal;width:42px;height:42px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:22px;flex:none}
+.big{font-size:38px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.role{display:flex;align-items:center;gap:14px;background:var(--g);color:#fff;border-radius:30px;padding:14px 18px;font-size:22px;margin-bottom:14px;cursor:pointer}
+.role u{width:38px;height:38px;border-radius:50%;background:#fff;flex:none;border:5px solid #fff}
+.role.sel u{background:var(--y);box-shadow:inset 0 0 0 5px #fff}
+.map{height:190px;border-radius:14px;background:repeating-linear-gradient(35deg,#9fc65a 0 26px,#7cae44 26px 52px,#b7d46c 52px 78px);position:relative;margin-bottom:12px}
+.map:after{content:"📍";position:absolute;left:46%;top:38%;font-size:40px}
+.map b{position:absolute;inset:18% 12% 14% 14%;border:3px dashed #fff;border-radius:12px 40px 12px 30px}
+.link{color:var(--g);text-align:center;margin:10px 0;cursor:pointer;text-decoration:underline}
+#back{cursor:pointer;font-size:15px;color:var(--g);margin-bottom:4px;display:inline-block}
+#nav{position:absolute;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid #ddd;padding:8px 0 10px}
+#nav div{flex:1;text-align:center;font-size:11px;cursor:pointer;color:var(--mut)}#nav i{display:block;font-style:normal;font-size:22px}
+#nav .on{color:var(--gd);font-weight:700}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="app">
+ <div id="top" class="hide"><div class="lg"><div class="star">🌱</div>WAKAFIN</div><div class="ic"><span id="bell" title="Notifikasi">🔔</span><span id="gear" title="Pengaturan">⚙️</span></div></div>
+ <div id="scr"></div>
+ <div id="nav" class="hide"></div>
+</div>
+<script>
+var role=null,S=document.getElementById('scr'),nav=document.getElementById('nav'),top_=document.getElementById('top'),hist=[];
+function tile(i,t,to){return '<div class="tile" data-go="'+to+'"><i>'+i+'</i>'+t+'</div>'}
+function tabs(a){return '<div class="tabs">'+a.map(function(x,i){return '<div class="tab'+(i?'':' on')+'">'+x+'</div>'}).join('')+'</div>'}
+function row(i,t,m,s){return '<div class="row"><div class="th">'+i+'</div><div><b>'+t+'</b>'+(s?'<small>'+s+'</small><br>':'')+'<span>'+m+'</span></div></div>'}
+function soon(t,i,d){return '<h1>'+t+'</h1><div class="card" style="text-align:center"><div class="big">'+i+'</div><p style="margin-top:8px">'+d+'</p></div>'}
+var P={
+welcome:function(){return '<div style="text-align:center;padding-top:24px"><div class="star" style="width:90px;height:90px;margin:auto;font-size:44px">🌱</div><div style="font-size:38px;font-weight:700;color:var(--gd);margin-top:8px">WAKAFIN</div><small style="color:var(--gd);letter-spacing:1px">WAKAF FINANCE FOR SUSTAINABLE FARMING</small><p style="margin:26px 0 20px">Selamat datang di Wakafin!</p><p style="margin-bottom:14px">Pilih peran:</p></div><div class="role" data-role="investor"><u></u>Investor</div><div class="role" data-role="petani"><u></u>Petani</div><button class="btn y" style="margin-top:30px" data-go="register">Daftar Sekarang</button><p class="link" data-go="login">Sudah punya akun? masuk</p>'},
+login:function(){return '<div style="text-align:center;padding-top:20px"><div class="star" style="width:70px;height:70px;margin:auto;font-size:34px">🌱</div><div style="font-size:30px;font-weight:700;color:var(--gd)">WAKAFIN</div><p style="margin:24px 0 10px">Login dengan</p><div style="font-size:30px;display:flex;gap:20px;justify-content:center;margin-bottom:10px"><span title="Google">🔵</span><span title="Facebook">📘</span></div><p style="margin-bottom:10px">Atau</p></div><input id="u" placeholder="Nomor ponsel / email"><input id="p" type="password" placeholder="Kata sandi"><button class="btn" id="dologin">Login</button><p class="link">Lupa kata sandi?</p><button class="btn" data-go="register">Buat akun baru</button>'},
+register:function(){return '<span id="back">‹ Kembali</span><h1>Buat akun baru</h1><p style="margin-bottom:12px">Daftar sebagai <b>'+(role||'belum dipilih')+'</b>.</p><input placeholder="Nama lengkap"><input placeholder="Nomor ponsel / email"><input type="password" placeholder="Kata sandi"><button class="btn y" id="dologin">Daftar sekarang</button>'},
+home_investor:function(){return '<div class="hero"><p>Assalammualaikum,<br>Investor Budi 👋</p><small>Berinvestasi halal, berdampak nyata untuk petani Indonesia</small></div><div class="stat"><div>Total investasi<b>Rp50.000.000</b></div><div>Total imbal hasil<b>Rp6.750.000</b><em>▲ 13,5% dari bulan lalu</em></div></div><div class="grid">'+tile('💰','Dashboard Investasi','dash')+tile('🤝','ROI &amp; Bagi Hasil','roi')+tile('📑','Edukasi &amp; Laporan','edu')+'</div><div class="grid" style="grid-template-columns:repeat(2,1fr);padding:0 14%;grid-template-columns:repeat(2,1fr)">'+tile('📈','Marketplace Investasi','market')+tile('🌍','Tracking SDGs','sdgs')+'</div><div class="green band" data-go="pasar"><i>🏪</i>Pasar Digital<br>Hortikultura</div><div class="green" data-go="sekolah" style="cursor:pointer">🏫 Info program<br><b>Sekolah Edukasi Pertanian</b><div style="text-align:right;font-size:13px">Lihat detail›</div></div>'},
+home_petani:function(){return '<div class="hero"><p>Assalammualaikum,<br>Pak Ahmad 👋</p><small>Petani hortikultura – Berastagi</small></div><div class="stat"><div>Lahan aktif<b>2 Lahan</b></div><div>Pendapatan bulan ini<b>Rp12.750.000</b><em>▲ 18% dari bulan lalu</em></div></div><div class="grid">'+tile('💵','Pembiayaan Syari\'ah','biaya')+tile('🎁','Wakaf Produktif','wakaf')+tile('🌾','Monitoring Lahan','lahan')+tile('🌍','Dampak SDGs','sdgs')+tile('💡','Edukasi Halal Thayyib','halal')+tile('🤖','AI Fintech','ai')+'</div><div class="green band" data-go="pasar"><i>🏪</i>Pasar Digital<br>Hortikultura</div><div class="green" data-go="sekolah" style="cursor:pointer">🏫 Info program<br><b>Sekolah Edukasi Pertanian</b><div style="text-align:right;font-size:13px">Lihat detail›</div></div>'},
+dash:function(){return '<span id="back">‹ Kembali</span><h1>Dashboard Investasi</h1>'+tabs(['Ringkasan','Proyek saya','Real time'])+'<div class="map" style="background:linear-gradient(#2f7d3b,#6fb04a);height:140px;display:grid;place-items:center;font-size:60px">🥬<style>.map:after,.map b{display:none}</style></div><b>Proyek Holtikultura Berastagi (Sayuran Daun)</b><div class="bar"><i style="width:80%"></i></div><small>Progres 80%</small><div class="card" style="margin-top:12px">🌿 <b>Pertumbuhan tanaman</b><br>Fase vegetatif (72%)</div><div class="card">💰 <b>Penggunaan modal</b><br>Rp36.000.000 / Rp50.000.000</div><div class="card">🌾 <b>Estimasi panen</b><br>28 hari lagi</div><div class="card">➡️ <b>Kondisi pasar</b><br>Harga stabil</div>'},
+roi:function(){return '<span id="back">‹ Kembali</span><div class="green" style="display:flex;justify-content:space-between;align-items:center"><div><small>Imbal hasil investasi</small><div class="big">14,5%</div></div><span style="font-size:40px">📊</span></div><div class="card"><h2 style="margin-top:0">Perhitungan bagi hasil</h2><div class="kv">Akad<b>Mudharabah Muqayyadah</b></div><div class="kv">Nisbah bagi hasil<b>60% investor · 40% petani</b></div><div class="kv">Investasi<b>Rp50.000.000,00</b></div><div class="kv">Estimasi imbal hasil<b style="color:var(--ok)">Rp6.750.000</b></div></div><div class="card ok"><i>✓</i><div><b>Sesuai prinsip syariah</b><br>Bebas dari riba, gharar, dan maysir</div></div>'},
+edu:function(){return '<span id="back">‹ Kembali</span><h1>Edukasi dan Laporan Keuangan</h1>'+tabs(['Edukasi','Laporan keuangan'])+row('🪙','Literasi Keuangan Syariah','10 menit · Video')+row('📶','Analisis Risiko Investasi Pertanian','10 menit · Video')+row('☪️','Strategi Diversifikasi Portofolio Halal','15 menit · Video')+'<div class="green">📄 <b>Laporan keuangan</b><br>Laporan berbasis PSAK Syariah, diaudit oleh pihak independen</div>'},
+halal:function(){return '<span id="back">‹ Kembali</span><div class="green" style="text-align:center;font-size:20px">Edukasi Halal Thayyib</div>'+tabs(['Semua','Edukasi','Video','Modul'])+row('🥬','Pertanian Halal &amp; Thayyib','10 menit · Video','Prinsip dasar dan implementasi')+row('🌱','Budidaya Holtikultura Berkelanjutan','10 menit · Video')+row('🧪','Pupuk Organik &amp; Ramah Lingkungan','15 menit · Video')+row('🧺','Pasca Panen &amp; Standar Kehalalan','25 menit · Video')},
+lahan:function(){return '<span id="back">‹ Kembali</span><h1>Monitoring Lahan</h1>'+tabs(['Peta lahan','Sensor (IoT)'])+'<div class="map"><b></b></div><div class="card"><b>Lahan 1 – Wortel</b> · Luas 0,8 Ha<div class="kv" style="margin-top:8px"><span>💧 Kelembapan<br><b>72%</b></span><span>🌡️ Suhu<br><b>24°C</b></span><span>🌱 pH tanah<br><b>6,5</b></span></div></div><div class="gold ok"><i>✓</i><div><b style="font-size:18px">Kondisi lahan optimal</b><br>Lanjutkan perawatan rutin</div></div>'},
+biaya:function(){return '<span id="back">‹ Kembali</span><div class="green"><h1 style="color:#fff;margin:0 0 4px">Pembiayaan Mudharabah Muqayyadah</h1></div><div class="gold">Fasilitas pembiayaan usaha tani dengan skema bagi hasil sesuai prinsip syariah</div><button class="btn" id="ajukan">Ajukan pembiayaan</button><h2>Proses pembiayaan</h2><div class="steps"><div class="step"><i>📝</i>Ajukan proposal</div>›<div class="step"><i>✅</i>Verifikasi &amp; analisis</div>›<div class="step"><i>🤝</i>Akad digital</div>›<div class="step"><i>💸</i>Pencairan dana</div></div>'},
+wakaf:function(){return '<span id="back">‹ Kembali</span><div class="card" style="padding:0;overflow:hidden"><div style="height:120px;background:linear-gradient(135deg,#a05a45,#c98f6e);display:grid;place-items:center;font-size:60px">🏫</div><div style="padding:14px;text-align:center"><b style="font-size:19px">Wakaf untuk Sekolah Edukasi Pertanian</b><p style="margin:6px 0 10px;font-size:14px">Dukung pendidikan, pelatihan, dan pemberdayaan petani holtikultura di Berastagi</p><button class="btn" id="wakafnow">Wakaf sekarang</button></div></div><div class="green"><b>Progress penghimpunan</b><div style="margin:6px 0">Rp420.000.000 / <span style="color:#c9f5a0">Rp1.000.000.000</span></div><div class="bar"><i style="width:42%"></i></div></div><div class="grid">'+tile('🤲','Donasi Wakaf','wakaf')+tile('🔍','Laporan Pengelolaan','edu')+tile('📈','Perkembangan Program','dash')+'</div>'},
+ai:function(){return '<span id="back">‹ Kembali</span><div style="display:flex;gap:14px;align-items:center;margin-bottom:14px"><span style="font-size:56px">💡</span><div><h1 style="margin:0">Analisis Keuangan Wakafin</h1><small>AI siap membantu analisis risiko, rekomendasi pembiayaan, dan perencanaan keuangan usaha tani Anda</small></div></div>'+tile('🔍','Analisis kelayakan usaha','ai2').replace('class="tile"','class="tile" style="flex-direction:row;justify-content:flex-start;padding:16px;margin-bottom:12px;font-size:16px"')+tile('💵','Rekomendasi pembiayaan','biaya').replace('class="tile"','class="tile" style="flex-direction:row;justify-content:flex-start;padding:16px;margin-bottom:12px;font-size:16px"')+tile('📋','Perencanaan keuangan','ai2').replace('class="tile"','class="tile" style="flex-direction:row;justify-content:flex-start;padding:16px;margin-bottom:12px;font-size:16px"')+tile('👥','Simulasi bagi hasil','roi').replace('class="tile"','class="tile" style="flex-direction:row;justify-content:flex-start;padding:16px;margin-bottom:12px;font-size:16px"')},
+ai2:function(){return soon('Analisis AI','🤖','Fitur analisis AI sedang disiapkan dan akan segera hadir.')},
+market:function(){function p(i,t,m,r,pc){return '<div class="card"><div class="row" style="margin:0"><div class="th">'+i+'</div><div><b>'+t+'</b><small>'+m+'</small><br><span>Imbal hasil '+r+'</span></div></div><div class="bar"><i style="width:'+pc+'%"></i></div><div class="kv"><small>Terkumpul '+pc+'%</small><button class="btn" data-msg="Terima kasih! Fitur pendanaan segera tersedia." style="width:auto;margin:0;padding:8px 20px;font-size:14px">Danai</button></div></div>'}return '<span id="back">‹ Kembali</span><h1>Marketplace Investasi</h1>'+tabs(['Semua','Sayuran','Buah','Umbi'])+p('🥬','Sayuran Daun – Berastagi','Mudharabah · tenor 4 bulan','14,5%',80)+p('🥕','Wortel – Lahan 0,8 Ha','Mudharabah · tenor 5 bulan','13,0%',55)+p('🍓','Stroberi Greenhouse','Mudharabah · tenor 6 bulan','15,2%',30)},
+sdgs:function(){function g(n,t,v){return '<div class="card"><b>SDG '+n+' · '+t+'</b><div class="bar"><i style="width:'+v+'%"></i></div><small>'+v+'% target tercapai</small></div>'}return '<span id="back">‹ Kembali</span><h1>Dampak SDGs</h1><div class="green"><small>Petani terdampak</small><div class="big">128</div></div>'+g(1,'Tanpa kemiskinan',62)+g(2,'Tanpa kelaparan',74)+g(4,'Pendidikan berkualitas',45)+g(12,'Konsumsi bertanggung jawab',58)},
+pasar:function(){function k(i,t,pr){return '<div class="card"><div class="row" style="margin:0"><div class="th">'+i+'</div><div><b>'+t+'</b><span>Halal &amp; thayyib</span><br><b>'+pr+'</b></div></div><button class="btn" data-msg="Ditambahkan ke keranjang." style="margin:10px 0 0;padding:10px;font-size:15px">Beli</button></div>'}return '<span id="back">‹ Kembali</span><h1>Pasar Digital Hortikultura</h1>'+tabs(['Semua','Sayur','Buah'])+k('🥬','Selada segar (1 kg)','Rp18.000')+k('🥕','Wortel Berastagi (1 kg)','Rp12.000')+k('🍓','Stroberi (500 g)','Rp35.000')+k('🍅','Tomat (1 kg)','Rp15.000')},
+sekolah:function(){return P.wakaf()}
+};
+function home(){return role==='petani'?'home_petani':'home_investor'}
+function navHtml(){var a=role==='petani'?[['🏠','Beranda',home()],['🌾','Lahan','lahan'],['💵','Biaya','biaya'],['🤖','AI','ai']]:[['🏠','Beranda',home()],['💰','Investasi','dash'],['📑','Edukasi','edu'],['📈','Pasar','market']];return a.map(function(x){return '<div data-go="'+x[2]+'"><i>'+x[0]+'</i>'+x[1]+'</div>'}).join('')}
+function go(n,noPush){if(!P[n])n='welcome';if(!noPush)hist.push(n);S.innerHTML=P[n]();S.scrollTop=0;var inner=/^(welcome|login|register)$/.test(n);top_.classList.toggle('hide',inner);nav.classList.toggle('hide',inner);if(!inner){nav.innerHTML=navHtml();[].forEach.call(nav.children,function(c){c.classList.toggle('on',c.dataset.go===n)})}
+ if(location.hash!=='#'+n)history.replaceState(null,'','#'+n)}
+document.getElementById('app').addEventListener('click',function(e){
+ var t=e.target,r=t.closest('[data-role]');
+ if(r){role=r.dataset.role;[].forEach.call(S.querySelectorAll('.role'),function(x){x.classList.toggle('sel',x===r)});return}
+ if(t.closest('#back')){hist.pop();go(hist[hist.length-1]||home(),true);return}
+ if(t.closest('#dologin')){if(!role)role='investor';hist=[];go(home());return}
+ if(t.closest('#ajukan')){alert('Pengajuan pembiayaan dimulai. Siapkan proposal usaha tani Anda.');return}
+ if(t.closest('#wakafnow')){alert('Terima kasih! Fitur pembayaran wakaf akan segera tersedia.');return}
+ var m=t.closest('[data-msg]');if(m){alert(m.dataset.msg);return}
+ if(t.closest('#bell')){alert('Kamu punya 1 notifikasi baru.');return}
+ if(t.closest('#gear')){alert('Pengaturan akan segera tersedia.');return}
+ var g=t.closest('[data-go]');if(g){var d=g.dataset.go;if(d==='login'&&false){}go(d)}
+ var tb=t.closest('.tab');if(tb){[].forEach.call(tb.parentNode.children,function(x){x.classList.toggle('on',x===tb)})}
+});
+go('welcome');
+</script>
+</body>
+</html>
